@@ -1,4 +1,10 @@
 %{"decimal": {:git, "git://github.com/ericmj/decimal.git", "66f13ded1ff6ead58df1ee77f750af454e4e01e4", []},
   "ecto": {:git, "git://github.com/elixir-lang/ecto.git", "b7e0e06d1dbe18b764e6fb9ce552d0a8b60f5703", []},
+  "hackney": {:git, "git://github.com/benoitc/hackney.git", "fd2158b39b0aa139bb90f0c867f246ddfec072e6", []},
+  "hex": {:git, "git://github.com/hexpm/hex.git", "641f546fd9765c34a400ce1e59f920929fb719df", []},
+  "httpoison": {:package, "0.3.0"},
+  "idna": {:git, "git://github.com/benoitc/erlang-idna.git", "21aa158b7f36bf2a000f12fe40d7f21eece9cf65", [tag: "hackney-0.11.2"]},
+  "jsex": {:package, "2.0.0"},
+  "jsx": {:package, "2.0.4"},
   "poolboy": {:git, "git://github.com/devinus/poolboy.git", "1d97facfd991f2606ae1d431cb98e624514ed9de", []},
   "postgrex": {:git, "git://github.com/ericmj/postgrex.git", "6363799b14689a05bf98912666934802f8974f3e", []}}
