@@ -13,7 +13,7 @@ defmodule BeamToolboxData.Project do
 
   validatep validate_create(project),
     key: present(),
-    also: unique([:key], on: Repo)
+    also: unique([:key], on: BeamToolboxData.Repo)
 
   def create(key) do
     now = Util.ecto_now
@@ -28,11 +28,9 @@ defmodule BeamToolboxData.Project do
   end
 
   def count do
-    query = from p in Project,
-            select: p
-    projects = Repo.all(query)
-    Enum.count(projects) # lol don't do this what
-    # FIXME: Learn how to use Ecto properly again
+    from(p in Project, select: count(p.id))
+    |> Repo.all
+    |> hd
   end
 end
 

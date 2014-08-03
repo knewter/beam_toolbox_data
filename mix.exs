@@ -15,7 +15,8 @@ defmodule BeamToolboxData.Mixfile do
     [
       applications: [
         :hackney
-      ]
+      ],
+      mod: {BeamToolboxData, []}
     ]
   end
 
