@@ -1,9 +1,6 @@
 defmodule BeamToolboxData.Project do
-  use Ecto.Model
-  alias BeamToolboxData.Util
-  alias BeamToolboxData.Repo
+  use BeamToolboxData.Model
   alias BeamToolboxData.Project
-  import BeamToolboxData.Validation
 
   schema "projects" do
     field :key, :string
@@ -19,18 +16,7 @@ defmodule BeamToolboxData.Project do
     now = Util.ecto_now
     project = %Project{key: key, created_at: now, updated_at: now}
 
-    case validate_create(project) do
-      [] ->
-        {:ok, Repo.insert(project)}
-      errors ->
-        {:error, Enum.into(errors, Map.new)}
-    end
-  end
-
-  def count do
-    from(p in Project, select: count(p.id))
-    |> Repo.all
-    |> hd
+    validate_create(project)
+    |> insert_or_errors(project)
   end
 end
-
