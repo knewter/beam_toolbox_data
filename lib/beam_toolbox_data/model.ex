@@ -1,4 +1,6 @@
 defmodule BeamToolboxData.Model do
+  alias BeamToolboxData.Repo
+
   defmacro __using__(_options) do
     quote do
       use Ecto.Model
@@ -14,15 +16,15 @@ defmodule BeamToolboxData.Model do
         |> Repo.all
         |> hd
       end
+    end
+  end
 
-      def insert_or_errors(validatep_response, insertable) do
-        case validatep_response do
-          [] ->
-            {:ok, Repo.insert(insertable)}
-          errors ->
-            {:error, Enum.into(errors, Map.new)}
-        end
-      end
+  def insert_or_errors(validatep_response, insertable) do
+    case validatep_response do
+      [] ->
+        {:ok, Repo.insert(insertable)}
+      errors ->
+        {:error, Enum.into(errors, Map.new)}
     end
   end
 end
