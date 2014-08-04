@@ -12,9 +12,7 @@ defmodule BeamToolboxData.Model do
       import unquote(__MODULE__)
 
       def count do
-        from(c in __MODULE__, select: count(c.id))
-        |> Repo.all
-        |> hd
+        Repo.count(__MODULE__)
       end
     end
   end
