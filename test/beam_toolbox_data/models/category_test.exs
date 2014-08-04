@@ -1,7 +1,7 @@
-defmodule BeamToolboxData.CategoryTest do
+defmodule BeamToolboxData.Models.CategoryTest do
   use BeamToolboxDataTest.Case
 
-  alias BeamToolboxData.Category
+  alias BeamToolboxData.Models.Category
   alias BeamToolboxData.Repo
 
   test "Category slugs are unique" do

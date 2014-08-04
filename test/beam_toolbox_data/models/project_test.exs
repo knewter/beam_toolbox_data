@@ -1,7 +1,7 @@
-defmodule BeamToolboxData.ProjectTest do
+defmodule BeamToolboxData.Models.ProjectTest do
   use BeamToolboxDataTest.Case
 
-  alias BeamToolboxData.Project
+  alias BeamToolboxData.Models.Project
   alias BeamToolboxData.Repo
 
   test "Project keys are unique" do

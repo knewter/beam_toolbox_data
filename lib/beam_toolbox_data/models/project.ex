@@ -1,6 +1,6 @@
-defmodule BeamToolboxData.Project do
+defmodule BeamToolboxData.Models.Project do
   use BeamToolboxData.Model
-  alias BeamToolboxData.Project
+  alias __MODULE__
 
   schema "projects" do
     field :key, :string

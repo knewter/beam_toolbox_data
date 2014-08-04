@@ -1,7 +1,7 @@
 defmodule BeamToolboxData.HexSynchronizerTest do
   use BeamToolboxDataTest.Case
   alias BeamToolboxData.HexSynchronizer
-  alias BeamToolboxData.Project
+  alias BeamToolboxData.Models.Project
   alias BeamToolboxData.Repo
 
   @fake_hex_packages [

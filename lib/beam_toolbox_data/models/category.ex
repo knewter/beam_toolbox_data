@@ -1,6 +1,6 @@
-defmodule BeamToolboxData.Category do
+defmodule BeamToolboxData.Models.Category do
   use BeamToolboxData.Model
-  alias BeamToolboxData.Category
+  alias __MODULE__
 
   schema "categories" do
     field :name, :string

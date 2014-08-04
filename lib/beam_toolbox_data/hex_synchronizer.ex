@@ -1,5 +1,5 @@
 defmodule BeamToolboxData.HexSynchronizer do
-  alias BeamToolboxData.Project
+  alias BeamToolboxData.Models.Project
 
   def synchronize(packages) do
     names(packages)
