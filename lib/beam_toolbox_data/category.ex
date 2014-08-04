@@ -19,6 +19,6 @@ defmodule BeamToolboxData.Category do
     category = %Category{name: name, slug: slug, created_at: now, updated_at: now}
 
     validate_create(category)
-    |> insert_or_errors(category)
+    |> Repo.insert_or_errors(category)
   end
 end

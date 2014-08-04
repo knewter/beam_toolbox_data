@@ -17,6 +17,6 @@ defmodule BeamToolboxData.Project do
     project = %Project{key: key, created_at: now, updated_at: now}
 
     validate_create(project)
-    |> insert_or_errors(project)
+    |> Repo.insert_or_errors(project)
   end
 end
