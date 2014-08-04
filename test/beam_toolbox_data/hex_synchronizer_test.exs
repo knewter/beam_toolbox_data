@@ -2,6 +2,7 @@ defmodule BeamToolboxData.HexSynchronizerTest do
   use BeamToolboxDataTest.Case
   alias BeamToolboxData.HexSynchronizer
   alias BeamToolboxData.Project
+  alias BeamToolboxData.Repo
 
   @fake_hex_packages [
     %{"created_at" => "2014-04-23T03:53:36Z",
@@ -29,12 +30,12 @@ defmodule BeamToolboxData.HexSynchronizerTest do
 
   test "generates local projects for each Hex package" do
     HexSynchronizer.synchronize(@fake_hex_packages)
-    assert Project.count == 2
+    assert Repo.count(Project) == 2
   end
 
   test "doesn't generate duplicates if a hex package already exists" do
     HexSynchronizer.synchronize(@fake_hex_packages)
     HexSynchronizer.synchronize(@fake_hex_packages)
-    assert Project.count == 2
+    assert Repo.count(Project) == 2
   end
 end

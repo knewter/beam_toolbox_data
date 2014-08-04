@@ -2,6 +2,7 @@ defmodule BeamToolboxData.CategoryTest do
   use BeamToolboxDataTest.Case
 
   alias BeamToolboxData.Category
+  alias BeamToolboxData.Repo
 
   test "Category slugs are unique" do
     assert {:ok, %Category{}} = Category.create("Some name", "some-slug")
@@ -10,6 +11,6 @@ defmodule BeamToolboxData.CategoryTest do
 
   test "Categories can be counted" do
     assert {:ok, %Category{}} = Category.create("Some name", "some-slug")
-    assert Category.count == 1
+    assert Repo.count(Category)
   end
 end

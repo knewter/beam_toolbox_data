@@ -10,10 +10,6 @@ defmodule BeamToolboxData.Model do
       import BeamToolboxData.Validation
 
       import unquote(__MODULE__)
-
-      def count do
-        Repo.count(__MODULE__)
-      end
     end
   end
 

@@ -2,6 +2,7 @@ defmodule BeamToolboxData.ProjectTest do
   use BeamToolboxDataTest.Case
 
   alias BeamToolboxData.Project
+  alias BeamToolboxData.Repo
 
   test "Project keys are unique" do
     assert {:ok, %Project{}} = Project.create("exlager")
@@ -10,6 +11,6 @@ defmodule BeamToolboxData.ProjectTest do
 
   test "Projects can be counted" do
     assert {:ok, %Project{}} = Project.create("exlager")
-    assert 1 = Project.count
+    assert 1 = Repo.count(Project)
   end
 end
