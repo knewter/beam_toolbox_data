@@ -4,7 +4,6 @@ defmodule BeamToolboxData.Model do
   defmacro __using__(_options) do
     quote do
       use Ecto.Model
-      use BeamToolboxData.Countable
       alias BeamToolboxData.Util
       alias BeamToolboxData.Repo
       import BeamToolboxData.Validation
