@@ -1,9 +1,11 @@
 defmodule BeamToolboxData.Models.Project do
   use BeamToolboxData.Model
+  alias BeamToolboxData.Models.Category
   alias __MODULE__
 
   schema "projects" do
     field :key, :string
+    belongs_to :category, Category
     field :created_at, :datetime
     field :updated_at, :datetime
   end
@@ -18,5 +20,14 @@ defmodule BeamToolboxData.Models.Project do
 
     validate_create(project)
     |> Repo.insert_or_errors(project)
+  end
+
+  def category(project) do
+    hd(Ecto.Associations.Preloader.run([project], Repo, :category)).category.get
+  end
+
+  def categorize(project, category) do
+    project = %Project{project | category_id: category.id}
+    Repo.update(project)
   end
 end
