@@ -30,4 +30,13 @@ defmodule BeamToolboxData.Models.Project do
     project = %Project{project | category_id: category.id}
     Repo.update(project)
   end
+
+  def for_category(:uncategorized) do
+    from(p in Project, where: p.category_id == nil, select: p)
+    |> Repo.all
+  end
+  def for_category(category) do
+    from(p in Project, where: p.category_id == ^category.id, select: p)
+    |> Repo.all
+  end
 end

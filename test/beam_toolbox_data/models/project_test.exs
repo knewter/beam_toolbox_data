@@ -22,4 +22,19 @@ defmodule BeamToolboxData.Models.ProjectTest do
     project = Repo.get(Project, project.id)
     assert Project.category(project) == category
   end
+
+  test "Projects for a given category can be fetched" do
+    {:ok, project} = Project.create("goo")
+    {:ok, category} = Category.create("Some name", "some-slug")
+    assert :ok = Project.categorize(project, category)
+    assert [project] = Project.for_category(category)
+  end
+
+  test "Projects for the 'uncategorized' meta-category can be fetched" do
+    {:ok, project} = Project.create("goo")
+    {:ok, project2} = Project.create("whee")
+    {:ok, category} = Category.create("Some name", "some-slug")
+    assert :ok = Project.categorize(project, category)
+    assert [project2] = Project.for_category(:uncategorized)
+  end
 end
