@@ -5,7 +5,7 @@ defmodule BeamToolboxData.Repo do
   alias BeamToolboxData.Repo
 
   def conf(:prod) do
-    parse_url(System.get_env("DATABASE_URL")) ++ [lazy: false]
+    parse_url(System.get_env("BEAM_TOOLBOX_DATABASE_URL")) ++ [lazy: false]
   end
 
   def conf(:dev) do

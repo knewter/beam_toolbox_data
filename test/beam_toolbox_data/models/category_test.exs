@@ -12,7 +12,7 @@ defmodule BeamToolboxData.Models.CategoryTest do
 
   test "Categories can be counted" do
     assert {:ok, %Category{}} = Category.create("Some name", "some-slug")
-    assert Repo.count(Category)
+    assert Repo.count(Category) == 1
   end
 
   test "A category's projects can be fetched" do
