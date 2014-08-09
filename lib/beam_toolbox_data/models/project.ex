@@ -39,4 +39,9 @@ defmodule BeamToolboxData.Models.Project do
     from(p in Project, where: p.category_id == ^category.id, select: p)
     |> Repo.all
   end
+
+  def find_by_key(key) do
+    from(p in Project, where: p.key == ^key, select: p)
+    |> Repo.one
+  end
 end
