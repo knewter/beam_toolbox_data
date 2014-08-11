@@ -59,8 +59,12 @@ defmodule BeamToolboxData.Models.Project do
     details
   end
 
+  defp meta(project) do
+    details(project)["meta"]
+  end
+
   def links(project) do
-    details(project)["meta"]["links"]
+    meta(project)["links"]
   end
 
   def source_link(project) do
@@ -76,5 +80,9 @@ defmodule BeamToolboxData.Models.Project do
       nil -> false
       _   -> source_link(project) =~ ~r/github.com/
     end
+  end
+
+  def description(project) do
+    meta(project)["description"]
   end
 end
