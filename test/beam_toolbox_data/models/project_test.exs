@@ -67,6 +67,7 @@ defmodule BeamToolboxData.Models.ProjectTest do
     assert "http://amrita.io" == Project.website_link(project)
     assert Project.has_github_link?(project) == true
     assert Project.description(project) == "A polite, well mannered and thoroughly upstanding testing framework for Elixir"
+    assert Project.github_repo_id(project) == "josephwilk/amrita"
   end
 
   test "Project details can be updated" do

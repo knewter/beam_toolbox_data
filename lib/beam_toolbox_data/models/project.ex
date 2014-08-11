@@ -85,4 +85,12 @@ defmodule BeamToolboxData.Models.Project do
   def description(project) do
     meta(project)["description"]
   end
+
+  def github_repo_id(project) do
+    case has_github_link?(project) do
+      false -> nil
+      true ->
+        source_link(project) |> String.replace(~r[https?://github.com/], "")
+    end
+  end
 end
