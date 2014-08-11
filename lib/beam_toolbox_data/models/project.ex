@@ -77,10 +77,17 @@ defmodule BeamToolboxData.Models.Project do
   end
 
   def has_github_link?(project) do
-    case source_link(project) do
+    case github_link(project) do
       nil -> false
-      _   -> source_link(project) =~ ~r/github.com/
+      _   -> true
     end
+  end
+
+  def github_link(project) do
+    Map.to_list(links(project))
+    |> Enum.find(fn({key, value}) ->
+      value =~ ~r[github.com]
+    end)
   end
 
   def description(project) do
@@ -91,7 +98,8 @@ defmodule BeamToolboxData.Models.Project do
     case has_github_link?(project) do
       false -> nil
       true ->
-        source_link(project) |> String.replace(~r[https?://github.com/], "")
+        {key, link} = github_link(project)
+        String.replace(link, ~r[https?://github.com/], "")
     end
   end
 end

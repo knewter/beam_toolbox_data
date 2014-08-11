@@ -85,4 +85,20 @@ defmodule BeamToolboxData.Models.ProjectTest do
     assert Project.website_link(project) == "lololol"
     assert Project.has_github_link?(project) == false
   end
+
+  test "github links can be anything" do
+    {:ok, project} = Project.create("amrita", @amrita_json)
+    Project.update_details(project, """
+      {
+        "meta": {
+          "links": {
+              "loloddname": "http://github.com/josephwilk/amrita"
+          }
+        }
+      }
+    """)
+    project = Project.find_by_key("amrita")
+    assert Project.has_github_link?(project) == true
+    assert Project.github_repo_id(project) == "josephwilk/amrita"
+  end
 end
