@@ -5,6 +5,7 @@ defmodule BeamToolboxData.Models.Project do
 
   schema "projects" do
     field :key, :string
+    field :details, :string
     belongs_to :category, Category
     field :created_at, :datetime
     field :updated_at, :datetime
@@ -15,11 +16,19 @@ defmodule BeamToolboxData.Models.Project do
     also: unique([:key], on: BeamToolboxData.Repo)
 
   def create(key) do
+    create(key, "")
+  end
+  def create(key, details) do
     now = Util.ecto_now
-    project = %Project{key: key, created_at: now, updated_at: now}
+    project = %Project{key: key, details: details, created_at: now, updated_at: now}
 
     validate_create(project)
     |> Repo.insert_or_errors(project)
+  end
+
+  def update_details(project, details) do
+    %Project{project | details: details}
+    |> Repo.update
   end
 
   def category(project) do
@@ -27,8 +36,8 @@ defmodule BeamToolboxData.Models.Project do
   end
 
   def categorize(project, category) do
-    project = %Project{project | category_id: category.id}
-    Repo.update(project)
+    %Project{project | category_id: category.id}
+    |> Repo.update
   end
 
   def for_category(:uncategorized) do
@@ -43,5 +52,26 @@ defmodule BeamToolboxData.Models.Project do
   def find_by_key(key) do
     from(p in Project, where: p.key == ^key, select: p)
     |> Repo.one
+  end
+
+  def details(project) do
+    {:ok, details} = project.details |> JSEX.decode
+    details
+  end
+
+  def links(project) do
+    details(project)["meta"]["links"]
+  end
+
+  def source_link(project) do
+    links(project)["Source"]
+  end
+
+  def website_link(project) do
+    links(project)["Website"]
+  end
+
+  def has_github_link?(project) do
+    source_link(project) =~ ~r/github.com/
   end
 end

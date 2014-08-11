@@ -42,4 +42,44 @@ defmodule BeamToolboxData.Models.ProjectTest do
     {:ok, project} = Project.create("whee")
     assert project = Project.find_by_key("whee")
   end
+
+  @amrita_json """
+    {
+      "created_at": "2014-04-28T17:31:45Z",
+      "meta": {
+        "contributors": ["Joseph Wilk"],
+        "description": "A polite, well mannered and thoroughly upstanding testing framework for Elixir",
+        "licenses": ["MIT"],
+        "links": {
+            "Source": "http://github.com/josephwilk/amrita",
+            "Website": "http://amrita.io"
+        }
+      },
+      "name": "amrita",
+      "updated_at": "2014-04-28T17:40:11Z",
+      "url": "https://hex.pm/api/packages/amrita"
+    }
+  """
+
+  test "Project details can be fetched" do
+    {:ok, project} = Project.create("amrita", @amrita_json)
+    assert "http://github.com/josephwilk/amrita" == Project.source_link(project)
+    assert "http://amrita.io" == Project.website_link(project)
+    assert Project.has_github_link?(project) == true
+  end
+
+  test "Project details can be updated" do
+    {:ok, project} = Project.create("amrita", @amrita_json)
+    Project.update_details(project, """
+      {
+        "meta": {
+          "links": {
+              "Website": "lololol"
+          }
+        }
+      }
+    """)
+    project = Project.find_by_key("amrita")
+    assert Project.website_link(project) == "lololol"
+  end
 end

@@ -2,15 +2,17 @@ defmodule BeamToolboxData.HexSynchronizer do
   alias BeamToolboxData.Models.Project
 
   def synchronize(packages) do
-    names(packages)
-    |> Enum.map &find_or_create_by_key/1
+    packages
+    |> Enum.map &find_or_create/1
   end
 
-  defp names(packages) do
-    Enum.map(packages, &(&1["name"]))
-  end
-
-  defp find_or_create_by_key(key) do
-    Project.create(key)
+  defp find_or_create(details) do
+    key = details["name"]
+    {:ok, details_encoded} = JSEX.encode(details)
+    existing_project = Project.find_by_key(key)
+    case existing_project do
+      nil -> Project.create(key, details_encoded)
+      _   -> Project.update_details(existing_project, details_encoded)
+    end
   end
 end
