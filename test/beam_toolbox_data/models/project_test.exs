@@ -81,5 +81,6 @@ defmodule BeamToolboxData.Models.ProjectTest do
     """)
     project = Project.find_by_key("amrita")
     assert Project.website_link(project) == "lololol"
+    assert Project.has_github_link?(project) == false
   end
 end

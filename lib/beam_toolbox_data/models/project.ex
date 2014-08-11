@@ -72,6 +72,9 @@ defmodule BeamToolboxData.Models.Project do
   end
 
   def has_github_link?(project) do
-    source_link(project) =~ ~r/github.com/
+    case source_link(project) do
+      nil -> false
+      _   -> source_link(project) =~ ~r/github.com/
+    end
   end
 end
