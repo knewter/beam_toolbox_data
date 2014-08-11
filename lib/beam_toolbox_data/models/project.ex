@@ -1,6 +1,7 @@
 defmodule BeamToolboxData.Models.Project do
   use BeamToolboxData.Model
   alias BeamToolboxData.Models.Category
+  alias BeamToolboxData.GitHub
   alias __MODULE__
 
   schema "projects" do

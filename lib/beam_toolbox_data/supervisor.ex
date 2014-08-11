@@ -7,7 +7,8 @@ defmodule BeamToolboxData.Supervisor do
 
   def init([]) do
     children = [
-      worker(BeamToolboxData.Repo, [])
+      worker(BeamToolboxData.Repo, []),
+      worker(:cadfaerl, [:github, 2000])
     ]
     supervise(children, strategy: :one_for_one)
   end

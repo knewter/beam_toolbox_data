@@ -32,11 +32,13 @@ defmodule BeamToolboxData.Mixfile do
   # Type `mix help deps` for more examples and options
   defp deps do
     [
-      {:ecto,      github: "elixir-lang/ecto"},
-      {:poolboy,   github: "devinus/poolboy", override: true},
-      {:postgrex,  github: "ericmj/postgrex", override: true},
-      {:decimal,   github: "ericmj/decimal",  override: true},
-      {:hex_client, github: "knewter/hex_client"}
+      {:ecto,       github: "elixir-lang/ecto"},
+      {:poolboy,    github: "devinus/poolboy", override: true},
+      {:postgrex,   github: "ericmj/postgrex", override: true},
+      {:decimal,    github: "ericmj/decimal",  override: true},
+      {:hex_client, github: "knewter/hex_client"},
+      {:cadfaerl,   github: "ddossot/cadfaerl"},
+      {:earmark,    "~> 0.1.9"}
     ]
   end
 end
