@@ -22,4 +22,11 @@ defmodule BeamToolboxData.Models.CategoryTest do
     projects = Category.projects(category)
     assert projects = [%Project{id: project.id}]
   end
+
+  test "All the categories can be fetched" do
+    assert {:ok, %Category{}} = Category.create("Some name", "some-slug")
+    assert {:ok, %Category{}} = Category.create("Some other name", "some-other-slug")
+    categories = Category.all
+    assert Enum.map(categories, &(&1.slug)) == ["some-slug", "some-other-slug"]
+  end
 end

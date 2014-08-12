@@ -27,4 +27,9 @@ defmodule BeamToolboxData.Models.Category do
   def projects(category) do
     hd(Ecto.Associations.Preloader.run([category], Repo, :projects)).projects.all
   end
+
+  def all do
+    from(c in Category, select: c)
+    |> Repo.all
+  end
 end
