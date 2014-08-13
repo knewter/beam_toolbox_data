@@ -1,6 +1,6 @@
 %{"cadfaerl": {:git, "git://github.com/ddossot/cadfaerl.git", "2be603d0aa7aca9a42e61534807c996c3cbd7be2", []},
   "decimal": {:git, "git://github.com/ericmj/decimal.git", "66f13ded1ff6ead58df1ee77f750af454e4e01e4", []},
-  "earmark": {:package, "0.1.9"},
+  "earmark": {:git, "git://github.com/pragdave/earmark.git", "cbe6ce9fb27d5af5e029197d4e67b08b811e6f0d", []},
   "ecto": {:git, "git://github.com/elixir-lang/ecto.git", "b7e0e06d1dbe18b764e6fb9ce552d0a8b60f5703", []},
   "hackney": {:git, "git://github.com/benoitc/hackney.git", "fd2158b39b0aa139bb90f0c867f246ddfec072e6", []},
   "hex": {:git, "git://github.com/hexpm/hex.git", "641f546fd9765c34a400ce1e59f920929fb719df", []},
