@@ -32,7 +32,7 @@ defmodule BeamToolboxData.Models.Project.GitHub do
     end
 
     defmodule Cached do
-      @time_to_live 600 # 10 minutes
+      @time_to_live 60 * 60 * 3 # 3 hours
 
       [:stargazers_count, :forks_count, :latest_commit_date, :description]
       |> Enum.each fn(fun_name) ->
