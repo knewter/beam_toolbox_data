@@ -107,11 +107,14 @@ defmodule BeamToolboxData.Models.Project do
   end
 
   def licenses(project) do
-    meta(project)["licenses"]
+    meta(project)["licenses"] || []
   end
 
   def license(project) do
-    licenses(project) |> hd
+    case licenses(project) do
+      [] -> "No license"
+      l  -> hd(l)
+    end
   end
 
   def contributors(project) do

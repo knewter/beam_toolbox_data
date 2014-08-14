@@ -93,7 +93,20 @@ defmodule BeamToolboxData.Models.ProjectTest do
 
   test "Project licenses can be fetched" do
     {:ok, project} = Project.create("amrita", @amrita_json)
+    assert ["MIT"] == Project.licenses(project)
     assert "MIT" == Project.license(project)
+  end
+
+  test "Project licenses is an empty list if there is no such key in the map" do
+    {:ok, project} = Project.create("amrita", @amrita_json)
+    Project.update_details(project, """
+      {
+        "meta": {}
+      }
+    """)
+    project = Project.find_by_key("amrita")
+    assert [] = Project.licenses(project)
+    assert "No license" = Project.license(project)
   end
 
   test "Project contributors can be fetched" do
