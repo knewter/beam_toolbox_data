@@ -33,7 +33,10 @@ defmodule BeamToolboxData.Models.Project do
   end
 
   def category(project) do
-    hd(Ecto.Associations.Preloader.run([project], Repo, :category)).category.get
+    case Ecto.Associations.Preloader.run([project], Repo, :category) do
+      [] -> :uncategorized
+      proj -> hd(proj).category.get
+    end
   end
 
   def categorize(project, category) do

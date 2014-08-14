@@ -23,6 +23,11 @@ defmodule BeamToolboxData.Models.ProjectTest do
     assert Project.category(project) == category
   end
 
+  test "Uncategorized projects have the :uncategorized meta category" do
+    {:ok, project} = Project.create("goo")
+    assert Project.category(project) == :uncategorized
+  end
+
   test "Projects for a given category can be fetched" do
     {:ok, project} = Project.create("goo")
     {:ok, category} = Category.create("Some name", "some-slug")
