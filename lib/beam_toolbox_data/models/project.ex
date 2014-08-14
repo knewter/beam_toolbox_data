@@ -115,6 +115,6 @@ defmodule BeamToolboxData.Models.Project do
   end
 
   def contributors(project) do
-    meta(project)["contributors"]
+    meta(project)["contributors"] || []
   end
 end

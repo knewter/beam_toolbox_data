@@ -101,6 +101,17 @@ defmodule BeamToolboxData.Models.ProjectTest do
     assert ["Joseph Wilk"] == Project.contributors(project)
   end
 
+  test "Project contributors is an empty list if there is no such key in the map" do
+    {:ok, project} = Project.create("amrita", @amrita_json)
+    Project.update_details(project, """
+      {
+        "meta": {}
+      }
+    """)
+    project = Project.find_by_key("amrita")
+    assert [] = Project.contributors(project)
+  end
+
   test "github links can be anything" do
     {:ok, project} = Project.create("amrita", @amrita_json)
     Project.update_details(project, """
