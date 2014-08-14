@@ -15,6 +15,11 @@ defmodule BeamToolboxData.Models.CategoryTest do
     assert Repo.count(Category) == 1
   end
 
+  test "A category can be fetched by slug" do
+    assert {:ok, category = %Category{}} = Category.create("Some name", "some-slug")
+    assert Category.find_by_slug("some-slug") == category
+  end
+
   test "A category's projects can be fetched" do
     {:ok, category} = Category.create("Some name", "some-slug")
     {:ok, project} = Project.create("foo")

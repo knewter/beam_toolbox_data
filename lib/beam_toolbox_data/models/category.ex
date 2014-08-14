@@ -32,4 +32,9 @@ defmodule BeamToolboxData.Models.Category do
     from(c in Category, select: c)
     |> Repo.all
   end
+
+  def find_by_slug(slug) do
+    from(c in Category, where: c.slug == ^slug, select: c)
+    |> Repo.one
+  end
 end
