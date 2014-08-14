@@ -39,7 +39,7 @@ defmodule BeamToolboxData.Models.Project.GitHub do
         def unquote(fun_name)(repo_ident) do
           fun_name = unquote(fun_name)
           {:ok, value} = :cadfaerl.get_or_fetch_ttl(:github, :"#{fun_name}#{repo_ident}", fn() ->
-                           apply(BeamToolbox.Models.Project.GitHub.Statistics, fun_name, [repo_ident])
+                           apply(BeamToolboxData.Models.Project.GitHub.Statistics, fun_name, [repo_ident])
                          end, @time_to_live)
           value
         end
