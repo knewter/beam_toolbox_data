@@ -91,6 +91,16 @@ defmodule BeamToolboxData.Models.ProjectTest do
     assert Project.has_github_link?(project) == false
   end
 
+  test "Project licenses can be fetched" do
+    {:ok, project} = Project.create("amrita", @amrita_json)
+    assert "MIT" == Project.license(project)
+  end
+
+  test "Project contributors can be fetched" do
+    {:ok, project} = Project.create("amrita", @amrita_json)
+    assert ["Joseph Wilk"] == Project.contributors(project)
+  end
+
   test "github links can be anything" do
     {:ok, project} = Project.create("amrita", @amrita_json)
     Project.update_details(project, """

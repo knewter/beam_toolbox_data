@@ -105,4 +105,16 @@ defmodule BeamToolboxData.Models.Project do
         String.replace(link, ~r[https?://github.com/], "")
     end
   end
+
+  def licenses(project) do
+    meta(project)["licenses"]
+  end
+
+  def license(project) do
+    licenses(project) |> hd
+  end
+
+  def contributors(project) do
+    meta(project)["contributors"]
+  end
 end
