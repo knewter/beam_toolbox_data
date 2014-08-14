@@ -3,7 +3,7 @@ defmodule BeamToolboxData.Models.Project.GitHub do
   alias BeamToolboxData.GitHub
 
   def readme_raw(project), do: GitHub.Raw.readme(Project.github_repo_id(project))
-  def readme(project), do: project |> readme_raw |> Earmark.to_html
+  def readme(project), do: project |> readme_raw |> Markdown.to_html(tables: true, fenced_code: true, autolink: true)
   def readme_caching(project) do
     {:ok, value} = :cadfaerl.get_or_fetch_ttl(:github, :"readme#{project.github}", fn() ->
                      readme(project)

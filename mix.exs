@@ -38,7 +38,7 @@ defmodule BeamToolboxData.Mixfile do
       {:decimal,    github: "ericmj/decimal",  override: true},
       {:hex_client, github: "knewter/hex_client"},
       {:cadfaerl,   github: "ddossot/cadfaerl"},
-      {:earmark,    github: "pragdave/earmark"}
+      {:markdown,   github: "devinus/markdown"}
     ]
   end
 end
