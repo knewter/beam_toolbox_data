@@ -5,7 +5,7 @@ defmodule BeamToolboxData.Models.Project.GitHub do
   def readme_raw(project), do: GitHub.Raw.readme(Project.github_repo_id(project))
   def readme(project), do: project |> readme_raw |> Markdown.to_html(tables: true, fenced_code: true, autolink: true)
   def readme_caching(project) do
-    {:ok, value} = :cadfaerl.get_or_fetch_ttl(:github, :"readme#{project.github}", fn() ->
+    {:ok, value} = :cadfaerl.get_or_fetch_ttl(:github, :"readme#{Project.github_repo_id(project)}", fn() ->
                      readme(project)
                    end, 600)
     value
@@ -32,14 +32,14 @@ defmodule BeamToolboxData.Models.Project.GitHub do
     end
 
     defmodule Cached do
-      @time_to_live 600 # 10 minutes
+      @time_to_live 60 * 60 * 3 # 3 hours
 
       [:stargazers_count, :forks_count, :latest_commit_date, :description]
       |> Enum.each fn(fun_name) ->
         def unquote(fun_name)(repo_ident) do
           fun_name = unquote(fun_name)
           {:ok, value} = :cadfaerl.get_or_fetch_ttl(:github, :"#{fun_name}#{repo_ident}", fn() ->
-                           apply(BeamToolbox.Models.Project.GitHub.Statistics, fun_name, [repo_ident])
+                           apply(BeamToolboxData.Models.Project.GitHub.Statistics, fun_name, [repo_ident])
                          end, @time_to_live)
           value
         end
