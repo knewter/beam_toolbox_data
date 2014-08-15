@@ -120,4 +120,9 @@ defmodule BeamToolboxData.Models.Project do
   def contributors(project) do
     meta(project)["contributors"] || []
   end
+
+  def all do
+    from(p in Project, select: p)
+    |> Repo.all
+  end
 end
