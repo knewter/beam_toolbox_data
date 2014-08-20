@@ -45,16 +45,19 @@ defmodule BeamToolboxData.Models.Project do
   end
 
   def for_category(:uncategorized) do
-    from(p in Project, where: p.category_id == nil, select: p)
+    Project
+    |> where([p], p.category_id == nil)
     |> Repo.all
   end
   def for_category(category) do
-    from(p in Project, where: p.category_id == ^category.id, select: p)
+    Project
+    |> where([p], p.category_id == ^category.id)
     |> Repo.all
   end
 
   def find_by_key(key) do
-    from(p in Project, where: p.key == ^key, select: p)
+    Project
+    |> where([p], p.key == ^key)
     |> Repo.one
   end
 
@@ -122,7 +125,7 @@ defmodule BeamToolboxData.Models.Project do
   end
 
   def all do
-    from(p in Project, select: p)
+    Project
     |> Repo.all
   end
 end

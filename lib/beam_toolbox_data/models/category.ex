@@ -1,5 +1,6 @@
 defmodule BeamToolboxData.Models.Category do
   use BeamToolboxData.Model
+  import Ecto.Query
   alias BeamToolboxData.Models.Project
   alias __MODULE__
 
@@ -29,12 +30,13 @@ defmodule BeamToolboxData.Models.Category do
   end
 
   def all do
-    from(c in Category, select: c)
+    Category
     |> Repo.all
   end
 
   def find_by_slug(slug) do
-    from(c in Category, where: c.slug == ^slug, select: c)
+    Category
+    |> where([c], c.slug == ^slug)
     |> Repo.one
   end
 end
