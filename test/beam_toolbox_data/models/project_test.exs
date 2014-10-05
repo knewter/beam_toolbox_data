@@ -40,12 +40,12 @@ defmodule BeamToolboxData.Models.ProjectTest do
     {:ok, project2} = Project.create("whee")
     {:ok, category} = Category.create("Some name", "some-slug")
     assert :ok = Project.categorize(project, category)
-    assert [project2] = Project.for_category(:uncategorized)
+    assert [project2] == Project.for_category(:uncategorized)
   end
 
   test "Projects can be fetched by key" do
     {:ok, project} = Project.create("whee")
-    assert project = Project.find_by_key("whee")
+    assert project == Project.find_by_key("whee")
   end
 
   @amrita_json """

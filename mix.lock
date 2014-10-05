@@ -1,7 +1,7 @@
 %{"cadfaerl": {:git, "git://github.com/ddossot/cadfaerl.git", "2be603d0aa7aca9a42e61534807c996c3cbd7be2", []},
   "decimal": {:git, "git://github.com/ericmj/decimal.git", "0b07729885be6ec303651809a3425b419fd23244", []},
   "earmark": {:git, "git://github.com/pragdave/earmark.git", "cbe6ce9fb27d5af5e029197d4e67b08b811e6f0d", []},
-  "ecto": {:git, "git://github.com/elixir-lang/ecto.git", "d5d5faefd4a4bb4bd8047cd32790506659d59e05", []},
+  "ecto": {:git, "git://github.com/elixir-lang/ecto.git", "996b43a48b1c0a11fec3114e33b03282792919f5", []},
   "ex_doc": {:package, "0.5.1"},
   "hackney": {:git, "git://github.com/benoitc/hackney.git", "c5af75c883c10a036d5c8de15daacd1a3b7d27de", []},
   "hex": {:git, "git://github.com/hexpm/hex.git", "641f546fd9765c34a400ce1e59f920929fb719df", []},
@@ -13,4 +13,4 @@
   "jsx": {:package, "2.0.4"},
   "markdown": {:git, "git://github.com/devinus/markdown.git", "a428908a6dd88f351775d1d3da530a1a2aa0d6cb", []},
   "poolboy": {:git, "git://github.com/devinus/poolboy.git", "17d1582533af5c076117e2e1270f4b43faa02f12", []},
-  "postgrex": {:git, "git://github.com/ericmj/postgrex.git", "eea2a143e7e38272b04ce70ea8978d0ceef9d789", []}}
+  "postgrex": {:git, "git://github.com/ericmj/postgrex.git", "bb12d101b659d3383eb8c701f975ce20ec64c46a", []}}
