@@ -3,7 +3,7 @@ defmodule BeamToolboxData.Mixfile do
 
   def project do
     [app: :beam_toolbox_data,
-     version: "0.0.2",
+     version: "0.0.3",
      config_path: "config/#{Mix.env}.exs",
      deps: deps]
   end
