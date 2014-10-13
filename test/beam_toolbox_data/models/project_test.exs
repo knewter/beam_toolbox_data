@@ -140,4 +140,9 @@ defmodule BeamToolboxData.Models.ProjectTest do
     assert Project.has_github_link?(project) == true
     assert Project.github_repo_id(project) == "josephwilk/amrita"
   end
+
+  test "Projects with no details return an empty hash" do
+    project = %Project{details: ""}
+    assert %{} = Project.details(project)
+  end
 end

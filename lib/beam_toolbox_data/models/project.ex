@@ -62,6 +62,9 @@ defmodule BeamToolboxData.Models.Project do
     |> Repo.one
   end
 
+  def details(%Project{details: ""}) do
+    %{}
+  end
   def details(project) do
     {:ok, details} = project.details |> JSEX.decode
     details
