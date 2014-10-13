@@ -33,8 +33,7 @@ defmodule BeamToolboxData.Models.Project do
   end
 
   def category(project) do
-    [preloaded] = Ecto.Associations.Preloader.run([project], Repo, :category)
-    case preloaded.category.get do
+    case project.category.get do
       nil -> :uncategorized
       cat -> cat
     end
@@ -53,12 +52,14 @@ defmodule BeamToolboxData.Models.Project do
   def for_category(category) do
     Project
     |> where([p], p.category_id == ^category.id)
+    |> preload(:category)
     |> Repo.all
   end
 
   def find_by_key(key) do
     Project
     |> where([p], p.key == ^key)
+    |> preload(:category)
     |> Repo.one
   end
 
@@ -130,6 +131,7 @@ defmodule BeamToolboxData.Models.Project do
 
   def all do
     Project
+    |> preload(:category)
     |> Repo.all
   end
 end
